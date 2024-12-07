@@ -1,5 +1,6 @@
 package com.workintech.s18d4.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Account {
     @Column(name = "money_amount")
     private Double moneyAmount;
 
+    @JsonBackReference //stack overflow olmasın diye bunu eklemeliyiz sınırsız recursion oluyor yoksa
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "customer_id")
     private Customer customer;
